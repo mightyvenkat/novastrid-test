@@ -17,4 +17,10 @@ else
    exit 1
 fi
 find "backup_dir" -name
+"app-backup-*.tar.gz" -mtime +
+$RETENTION_DAYS -exec rm -f {} \;
+
+echo "old backups older than $retention_days days deleted"
+
+exit 0
 
