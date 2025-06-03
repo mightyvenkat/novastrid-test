@@ -144,6 +144,13 @@ variable "key_name"{
    user_date = filename ("myec2.ppk")
 }
 
+output.tf
+-------------
+
+output "instance_public_ip" {
+    description = "public ip of ec2"
+    value = aws_instance.myec2.public_ip
+}
 
 
 
