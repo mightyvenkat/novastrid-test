@@ -35,11 +35,54 @@ exit 0
 
 task 1.4 ------ Scheduling the Script with Cron
 ---------------------------------------------------
-apt install crontab
+apt install crontab ---> if we use ubuntu
 
 crontab -e --> vi editor has open
 
 0 0 * * * /mnt/backup_file
+
+
+
+
+task2 :  Containerize a Web Application using Docker (python)
+-----------------------------------------------------
+
+app.py 
+----------
+from flask import flask
+
+app = flask (venkat)
+
+def hello()
+   return "this is venkat app"
+
+if venkat == "main":
+
+     app.run(host="0.0.0.0,port=8080")
+
+requirements.txt
+----------------
+echo "flask=2.2.5"
+
+Dockerfile
+--------------
+
+FROM python:3.9-slim
+WORKDIR /app
+copy . .
+RUN pip install -r requirements.txt
+EXPOSE 8080
+CMD ["python","app.py"]
+
+docker build -t myappimg . ------> run command to buid the image
+
+docker run -itd -p 8080 --name myappcon myappimg ------> run command to up the container
+
+curl http://localhost:8080
+
+
+
+
 
 
 
