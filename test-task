@@ -152,7 +152,31 @@ output "instance_public_ip" {
     value = aws_instance.myec2.public_ip
 }
 
+execution command
+-----------------------
 
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply --auto-approve
+
+prometheus setup
+---------------------
+
+install prometheus on our ec2
+
+target scarpe
+---------------
+global:
+  scrape_interval: 15s
+
+scarpe_configs:
+   - job_name: "ec2-node"
+     static_configs:
+         -targets: 
+             ["10.0.0.0:9100"]
+now the prometheus target the desired node
 
 
 
