@@ -84,6 +84,65 @@ curl http://localhost:8080  -------> testing
 task3 --> Infrastructure Provisioning and Monitoring with Terraform & Prometheus
 ------------------------------------------------------------------------------------
 
+terraform for ec2
+-------------------------
+
+provider.tf
+---------------
+
+terraform{
+  required providers{
+    aws {
+      source = "hashicorp/aws"
+      version ~> "5.0"
+    }
+  }
+}
+
+provider "aws" {
+   region = var.aws_region
+
+}
+
+main.tf
+---------
+resource "aws_instance" "myec2" {
+ami = var.ami_id
+instance_type = var.instance_type
+key_name = var.key_name
+tags = {
+  NAME = "myec2"
+ }
+
+ user_date = <<-EOF
+            #!/bin/bash
+             sudo apt update -y
+             sudo apt install apache -y
+            EOF
+}
+
+
+variable.tf
+---------------
+variable "aws_region"{
+   description = "aws_region" 
+   default = "us-east-2"
+}
+
+variable "ami_id"{
+   description = "ami-id" 
+   default = "ami-123456789"
+}
+
+variable "instance_type"{
+   description = "instance_type" 
+   default = "t2.medium"
+}
+
+variable "key_name"{
+   description = "key_name" 
+   user_date = filename ("myec2.ppk")
+}
 
 
 
