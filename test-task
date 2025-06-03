@@ -1,0 +1,20 @@
+tar -xvzf file_name ----> extract the files
+task 1 : 
+#!/bin/bash
+
+source_dir="/var/www/app"
+backup_dir = "backup"
+date=$(date +%F)
+backup_file="app-backup.tar.gz"
+retention_days=7
+mkdir -p "$backup_dir"
+tar -czf "$backup_dir/$backup_file" "$source_dir"
+if [[$? -eq 0]]
+   echo "backup successfully taken"
+$backup_dir/$backup_file
+else
+   echo "backup failed"
+   exit 1
+fi
+find "backup_dir" -name
+
