@@ -1,5 +1,9 @@
 tar -xvzf file_name ----> extract the files
 task 1 : 
+-----------------
+
+task : 1.1  --------> Backup Application Files and Logs:
+-----------------
 #!/bin/bash
 
 source_dir="/var/www/app"
@@ -15,12 +19,28 @@ $backup_dir/$backup_file
 else
    echo "backup failed"
    exit 1
-fi
+
+## task 1.2 ----> Clean Old Backups
+--------------------------------
+
 find "backup_dir" -name
 "app-backup-*.tar.gz" -mtime +
 $RETENTION_DAYS -exec rm -f {} \;
 
 echo "old backups older than $retention_days days deleted"
 
+task 1.3
+-----------
 exit 0
+
+task 1.4 ------ Scheduling the Script with Cron
+---------------------------------------------------
+apt install crontab
+
+crontab -e --> vi editor has open
+
+0 0 * * * /mnt/backup_file
+
+
+
 
